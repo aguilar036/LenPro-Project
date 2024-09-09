@@ -16,7 +16,7 @@ def create_tables():
     cur = conn.cursor()
 
     try:
-        cur.execute("CREATE TABLE IF NOT EXISTS agenda(id INT AUTO_INCREMENT, name TEXT, lastname TEXT);")
+        cur.execute("CREATE TABLE IF NOT EXISTS agenda(id INT AUTO_INCREMENT PRIMARY KEY, name TEXT, lastname TEXT);")
         conn.commit()
     except Exception as e:
         print(e)

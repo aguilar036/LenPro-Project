@@ -54,7 +54,7 @@ def remove():
     if request.method != "POST":
         return 404
 
-    id = request.form["rid"]
+    id = request.form["id"]
 
     connection = get_conn()
     cursor = connection.cursor()
@@ -77,14 +77,14 @@ def update():
         return 404
 
     id = request.form["id"]
-    firstName = request.form["uname"]
-    lastName = request.form["ulastname"]
+    firstName = request.form["name"]
+    lastName = request.form["lastname"]
 
     connection = get_conn()
     cursor = connection.cursor()
 
     try:
-        cursor.execute("UPDATE agenda SET firstname = %s, lastname = %s where id = %s;", (firstName, lastName, id))
+        cursor.execute("UPDATE agenda SET name = %s, lastname = %s where id = %s;", (firstName, lastName, id))
         connection.commit()
     except MySQLError as e:
         print(e)
