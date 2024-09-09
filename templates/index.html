@@ -13,6 +13,24 @@
     <input type="text" id="lastname" name="lastname">
     <input type="submit" value="Agregar contacto">
 </form>
+<br>
+<h1>Actualizar contacto</h1>
+<form action="/update" method="post" style="display: flex;">
+    <label for="id">Id: </label>
+    <input type="text" id="id" name="id">
+    <label for="name">Nombre: </label>
+    <input type="text" id="uname" name="name">
+    <label for="lastname">Apellido: </label>
+    <input type="text" id="ulastname" name="lastname">
+    <input type="submit" value="Actualizar contacto">
+</form>
+<br>
+<h1>Eliminar contacto</h1>
+<form action="/remove" method="post" style="display: flex;">
+    <label for="rid">Id: </label>
+    <input type="text" id="rid" name="rid">
+    <input type="submit" value="Eliminar contacto">
+</form>
 </body>
 </html>
 

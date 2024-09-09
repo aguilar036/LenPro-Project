@@ -27,7 +27,7 @@ def show():
     return render_template("out.html", contacts=contacts)
 
 @app.route("/add", methods=["POST"])
-def form():
+def add():
     if request.method != "POST":
         return 404
 
@@ -48,6 +48,53 @@ def form():
         connection.close()
 
     return redirect("show")
+
+@app.route("/remove", methods=["POST"])
+def remove():
+    if request.method != "POST":
+        return 404
+
+    id = request.form["rid"]
+
+    connection = get_conn()
+    cursor = connection.cursor()
+
+    try:
+        cursor.execute("DELETE FROM agenda where id = %s;", id)
+        connection.commit()
+    except MySQLError as e:
+        print(e)
+        return "Error:(",400
+    finally:
+        cursor.close()
+        connection.close()
+
+    return redirect("show")
+
+@app.route("/update", methods=["POST"])
+def update():
+    if request.method != "POST":
+        return 404
+
+    id = request.form["id"]
+    firstName = request.form["uname"]
+    lastName = request.form["ulastname"]
+
+    connection = get_conn()
+    cursor = connection.cursor()
+
+    try:
+        cursor.execute("UPDATE agenda SET firstname = %s, lastname = %s where id = %s;", (firstName, lastName, id))
+        connection.commit()
+    except MySQLError as e:
+        print(e)
+        return "Error:(",400
+    finally:
+        cursor.close()
+        connection.close()
+
+    return redirect("show")
+
 if __name__ == "__main__":
     create_tables()
     app.run()
