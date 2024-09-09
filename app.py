@@ -54,7 +54,7 @@ def remove():
     if request.method != "POST":
         return 404
 
-    id = request.form["id"]
+    id = request.form["rid"]
 
     connection = get_conn()
     cursor = connection.cursor()
